@@ -1,6 +1,6 @@
+#!/usr/bin/env python
 #-*-coding:utf8;-*-
-#qpy:2
-#qpy:console
+#author:Yinhu
 
 print "This is console module"
 for i in range(1,10):
