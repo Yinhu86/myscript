@@ -6,7 +6,6 @@
 import re
 import urllib2
 import subprocess
-import socket
 import os
 
 url = "http://mirrors.aliyun.com"
@@ -127,4 +126,4 @@ if __name__ == "__main__":
     print "Config cobbler ..."
     config_cobbler()
     print "All done !"
-    print "Please modify dhcp pool in /etc/cobbler/dnsmasq.template,and execute "cobbler sync" ,reboot cobblerd,dnamsq service"
+    print "Please modify dhcp pool in /etc/cobbler/dnsmasq.template,and execute 'cobbler sync' ,reboot cobblerd,dnamsq service"
