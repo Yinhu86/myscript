@@ -1,4 +1,4 @@
-
+#/usr/bin/env python
 #-*-coding:utf8 -*-
 #windows 下使用
 #linux 下应导入import MySQLdb 
