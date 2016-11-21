@@ -68,15 +68,8 @@ if __name__ == '__main__':
         IP_list = getIP.getagentIP(web)
         eIP = getIP.checkagentIP(IP_list)
         enableIP = enableIP + eIP
-    with open('agentIP.txt','ab+') as f:
+    with open('agentIP.txt','wb+') as f:
         for ip in enableIP:
             print ip
             f.write(ip + '\n')
-
-
-
-
-
-
-
 
