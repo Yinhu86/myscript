@@ -59,7 +59,6 @@ def download_img(img_url):
             for chunk in resp.iter_content(1024):
                 fj.write(chunk)
 
-
 def geturl_to_next(next_url,img_list,pid):
     end = True
     time.sleep(0.5)
