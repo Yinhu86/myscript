@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#!-*- coding:utf-8 -*-
 #author:Yinhu
 n=17
 m=15
