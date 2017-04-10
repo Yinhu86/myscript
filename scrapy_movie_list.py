@@ -54,7 +54,7 @@ class scrapy_dytt(object):
                 full_url = root_url + url['href']
                 self.index_list.append((url.text, full_url))
         except Exception,err:
-            print html_content
+            print "html content: ",html_content
             print err
     
     #抓取详细页中所需各个字段信息
@@ -65,9 +65,8 @@ class scrapy_dytt(object):
         try:
             soup = BeautifulSoup(html_content,'html.parser',from_encoding='utf8')
         except Exception,err:
-            print html_content
+            print "html content: ",html_content
             print err
-        print "len ",len(soup.find_all('div', id='Zoom'))    
         if len(soup.find_all('div', id='Zoom')) > 0:   
             movie_info = soup.find_all('div', id='Zoom')[0].find('span')
             if isinstance(movie_info,bs4.element.Tag):
@@ -160,7 +159,7 @@ class scrapy_dytt(object):
             if isinstance(type(content),type(None)):
                 print "get html error"
                 print pageurl[1]
-                time.sleep(3)
+                time.sleep(5)
                 content = self.get_html(pageurl[1])
                 self.get_detail_info(content,pageurl)
             else:
