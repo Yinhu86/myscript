@@ -29,7 +29,7 @@ class scrapy_dytt(object):
                 { 'User-Agent':'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; The World)'},
                 { 'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}]
         try:
-            html_page = requests.get(url,headers=random.choice(headers_list))
+            html_page = requests.get(url,headers=random.choice(headers_list),timeout=10)
             if html_page.status_code == 200:
                 #获取html编码
                 page_coding = html_page.apparent_encoding
@@ -60,7 +60,7 @@ class scrapy_dytt(object):
     #抓取详细页中所需各个字段信息
     def get_detail_info(self,html_content,index_url):
         list_tmp = []
-#        print index_url[1]
+        print index_url[1]
         #抓取所需信息,因为网页关于信息的格式有多种，因此根据情况判断使用不同的抓取方法
         try:
             soup = BeautifulSoup(html_content,'html.parser',from_encoding='utf8')
@@ -156,13 +156,14 @@ class scrapy_dytt(object):
         self.info_list = []
         for pageurl in self.index_list:
             content = self.get_html(pageurl[1])
-            if isinstance(type(content),type(None)):
+            print type(content)
+            if isinstance(content,str):
+                self.get_detail_info(content,pageurl)
+            else:
                 print "get html error"
                 print pageurl[1]
                 time.sleep(5)
                 content = self.get_html(pageurl[1])
-                self.get_detail_info(content,pageurl)
-            else:
                 self.get_detail_info(content,pageurl)
 
     #初始化数据库的表    
@@ -241,7 +242,7 @@ if __name__ == '__main__':
     dianying = scrapy_dytt()
     page_num = dianying.pagenum()
     dianying.create_db_tables()
-    for num in range(1,page_num+1):
+    for num in range(106,108):
         url = "http://www.ygdy8.net/html/gndy/dyzz/list_23_"+ str(num) + ".html"
         html = dianying.get_html(url)
         dianying.search_url(html)
